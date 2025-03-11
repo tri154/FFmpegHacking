@@ -960,7 +960,7 @@ static void rtsp_parse_transport(AVFormatContext *s,
         else
             th->lower_transport = RTSP_LOWER_TRANSPORT_UDP;
 
-        if (*p == ';')
+        if (*p == ';' || *p == ',')
             p++;
         /* get each parameter */
         while (*p != '\0' && *p != ',') {
