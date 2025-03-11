@@ -955,12 +955,17 @@ static void rtsp_parse_transport(AVFormatContext *s,
         } else {
             break;
         }
-        if (!av_strcasecmp(lower_transport, "TCP"))
+        // if (!av_strcasecmp(lower_transport, "TCP"))
+        //     th->lower_transport = RTSP_LOWER_TRANSPORT_TCP;
+        // else
+        //     th->lower_transport = RTSP_LOWER_TRANSPORT_UDP;
+
+        if (!av_strcasecmp(lower_transport, "TCP") || !av_strcasecmp(lower_transport, ""))
             th->lower_transport = RTSP_LOWER_TRANSPORT_TCP;
         else
             th->lower_transport = RTSP_LOWER_TRANSPORT_UDP;
-
-        if (*p == ';' || *p == ',')
+        
+        if (*p == ';')
             p++;
         /* get each parameter */
         while (*p != '\0' && *p != ',') {
